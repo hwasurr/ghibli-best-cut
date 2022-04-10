@@ -26,6 +26,7 @@ import {
 import { FilmCutReview } from './FilmCutReview';
 import FilmCutReviewDeleteAlert from './FilmCutReviewDelete';
 import { FilmCutReviewRegiModal } from './FilmCutReviewRegiModal';
+import FilmCutNavButton from './FilmCutNavButton';
 
 interface MovieCutDetailProps {
   cutImg: string;
@@ -85,15 +86,28 @@ export function FilmCutDetail({
   const deleteAlert = useDisclosure();
   return (
     <Box>
-      <AspectRatio ratio={16 / 9}>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <Image src={cutImg} objectFit="cover" fallbackSrc="" />
-        </motion.div>
-      </AspectRatio>
+      <motion.div
+        style={{ position: 'relative' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <AspectRatio ratio={16 / 9} maxW={530} m="auto">
+          <Image rounded={'md'} src={cutImg} objectFit="cover" fallbackSrc="" />
+        </AspectRatio>
+        <FilmCutNavButton
+          display={{ base: 'block', md: 'none' }}
+          position={{ left: 1 }}
+          onClick={() => alert('leftclick')}
+          direction="left"
+        />
+        <FilmCutNavButton
+          display={{ base: 'block', md: 'none' }}
+          position={{ right: 1 }}
+          onClick={() => alert('rightclick')}
+          direction="right"
+        />
+      </motion.div>
 
       <Box py={4}>
         <Flex justify="space-between" alignItems="center">

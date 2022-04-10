@@ -35,7 +35,7 @@ function FilmCutList({
           <LinkBox as="article">
             <Box>
               <LinkOverlay cursor="pointer" onClick={() => onClick(cut.id)}>
-                <Image src={cut.src} />
+                <Image src={cut.src} rounded={'md'} />
               </LinkOverlay>
             </Box>
           </LinkBox>

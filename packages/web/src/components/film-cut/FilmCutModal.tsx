@@ -1,7 +1,5 @@
 import {
-  Box,
   Center,
-  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,10 +9,10 @@ import {
   Spinner,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import React, { useEffect, useRef } from 'react';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import React, { useRef } from 'react';
 import { useCutQuery } from '../../generated/graphql';
 import { FilmCutDetail } from './FilmCutDetail';
+import FilmCutNavButton from './FilmCutNavButton';
 
 interface FilmCutModalProps {
   open: boolean;
@@ -67,24 +65,16 @@ function FilmCutModal({
               reviews={data.cutReviews}
             />
           )}
-
-          <Box pos="absolute" left={-12} top={'calc(50% - 32px)'}>
-            <IconButton
-              rounded={'full'}
-              icon={<MdChevronLeft></MdChevronLeft>}
-              aria-label="picture-to-left"
-              onClick={onPrevClick}
-            ></IconButton>
-          </Box>
-          <Box pos="absolute" right={-12} top={'calc(50% - 32px)'}>
-            <IconButton
-              ref={rightButtonRef}
-              rounded={'full'}
-              icon={<MdChevronRight></MdChevronRight>}
-              aria-label="picture-to-right"
-              onClick={onNextClick}
-            ></IconButton>
-          </Box>
+          <FilmCutNavButton
+            onClick={onPrevClick}
+            direction="left"
+            display={{ base: 'none', md: 'block' }}
+          />
+          <FilmCutNavButton
+            onClick={onNextClick}
+            direction="right"
+            display={{ base: 'none', md: 'block' }}
+          />
         </ModalBody>
       </ModalContent>
     </Modal>
